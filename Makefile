@@ -6,7 +6,7 @@
 #    By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/25 18:52:03 by mel-meka          #+#    #+#              #
-#    Updated: 2023/12/06 22:56:14 by mel-meka         ###   ########.fr        #
+#    Updated: 2023/12/11 14:01:17 by mel-meka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ FT_PRINTF_SRCS = ./ft_printf/ft_printf.c	\
 				 ./ft_printf/ft_putchar.c	\
 
 FDF_SRCS = fdf.c			\
-		   line.c			\
+		   fdf_err.c		\
+		   fdf_clean.c		\
 		   pixel_utils.c	\
 		   load_map.c
 

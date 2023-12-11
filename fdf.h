@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/06 23:12:51 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:09:35 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,45 @@ typedef struct s_image_data {
 	int		endian;
 }			t_image_data;
 
+typedef struct s_point {
+	int	x;
+	int	y;
+	int	z;
+	int	color;
+}		t_point;
+
 typedef struct s_map {
-	int	*m;
-	int	h;
-	int	w;
-}		t_map;
+	t_point	*points;
+	int		h;
+	int		w;
+}			t_map;
+
+typedef struct s_map_data {
+	char	*file_path;
+	int		fd;
+	t_list	*lines;
+	t_list	*splited_lines;
+	t_map	map;
+}			t_map_data;
 
 typedef struct s_fdf {
 	t_image_data	img_d;
+	t_map_data		map_data;
 	t_map			map;
 }					t_fdf;
 
-typedef struct s_vec2 {
-	float	x;
-	float	y;
-}			t_vec2;
-
-typedef struct s_line {
-	t_vec2	a;
-	t_vec2	b;
-}			t_line;
-
 int	ft_printf(const char *str, ...);
+
+t_fdf	*get_fdf(void);
+void	fdf_clean(void);
+void	del_with_free(void *content);
+
+void	fdf_err(char *msg);
 
 void	my_mlx_pixel_put(t_image_data *data, int x, int y, int color);
 int		floats_to_color(float f1, float f2, float f3, float f4);
-void shade(t_image_data *img_data, int(*f)(int x, int y));
+void	shade(t_image_data *img_data, int(*f)(int x, int y));
 
-void	draw_line(t_image_data *img_data, t_line line);
+//void	draw_line(t_image_data *img_data, t_line line);
 
-void	*load_map(int fd, t_map *map);
+void	load_map(t_fdf *fdf);
