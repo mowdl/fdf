@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 22:03:46 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/11 18:37:30 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/11 20:04:33 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	init_map(t_fdf *fdf)
 int	int_from_char_hex(char c)
 {
 	if (ft_isdigit(c))
-		return (c - 0);
+		return (c - '0');
 	else if (c >= 'A' && c <= 'F')
 		return (c - 'A' + 10);
 	else if (c >= 'a' && c <= 'f')
@@ -101,6 +101,7 @@ t_point	parse_point(char *str, int x, int y)
 		fdf_err("Error in input\n");
 	else
 	{
+		point.color = 0;
 		comma = comma + 3;
 		comma[6] = '\0';
 		while (*comma)

@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/11 16:09:35 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/11 21:08:16 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #include "get_next_line.h"
 #include <stdarg.h>
 
-#define HEIGHT 1000
-#define WIDTH 1500
+#define WIN_HEIGHT 1000
+#define WIN_WIDTH 1500
+#define WIN_TITLE "fdf"
 
 typedef struct s_image_data {
 	void	*img;
@@ -52,6 +53,8 @@ typedef struct s_fdf {
 	t_image_data	img_d;
 	t_map_data		map_data;
 	t_map			map;
+	void			*mlx;
+	void			*mlx_win;
 }					t_fdf;
 
 int	ft_printf(const char *str, ...);
@@ -62,10 +65,9 @@ void	del_with_free(void *content);
 
 void	fdf_err(char *msg);
 
-void	my_mlx_pixel_put(t_image_data *data, int x, int y, int color);
-int		floats_to_color(float f1, float f2, float f3, float f4);
-void	shade(t_image_data *img_data, int(*f)(int x, int y));
+void	draw_map(t_fdf *fdf);
+void	set_pixel(t_image_data *data, int x, int y, int color);
+void	transform(t_fdf *fdf);
 
-//void	draw_line(t_image_data *img_data, t_line line);
 
 void	load_map(t_fdf *fdf);

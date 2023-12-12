@@ -6,7 +6,7 @@
 #    By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/25 18:52:03 by mel-meka          #+#    #+#              #
-#    Updated: 2023/12/11 14:01:17 by mel-meka         ###   ########.fr        #
+#    Updated: 2023/12/11 21:08:44 by mel-meka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,9 @@ FDF_SRCS = fdf.c			\
 		   fdf_err.c		\
 		   fdf_clean.c		\
 		   pixel_utils.c	\
-		   load_map.c
+		   load_map.c		\
+		   draw_map.c		\
+		   transform.c
 
 FT_PRINTF_OBJS = $(FT_PRINTF_SRCS:.c=.o)
 GNL_OBJ = $(GNL_SRCS:.c=.o)
