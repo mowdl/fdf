@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:56:09 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/12 01:06:14 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:12:43 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_init_scale_factor(t_fdf *fdf)
 	float	wr;
 	float	s;
 
-	s = 1.0f;
+	s = 0.8f;
 	hr = (float)fdf->map.h / (float)WIN_HEIGHT;
 	wr = (float)fdf->map.w / (float)WIN_WIDTH;
 
