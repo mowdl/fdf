@@ -32,16 +32,60 @@ void	fdf_init_mlx(t_fdf *fdf)
 
 int	key_hook(int keycode, t_fdf *fdf)
 {
-	(void)fdf;
+	float	s;
+	int		rot;
+
+	rot = 1;
 	if (keycode == 53)
 	{
 		fdf_clean();
 		exit(0);
 	}
+	else if (keycode == KEY_W)
+	{
+		s = 1.2;
+		fdf->tr.scale.x *= s;
+		fdf->tr.scale.y *= s;
+		fdf->tr.scale.z *= s;
+		update(fdf);
+	}
+	else if (keycode == KEY_S)
+	{
+		s = 0.8;
+		fdf->tr.scale.x *= s;
+		fdf->tr.scale.y *= s;
+		fdf->tr.scale.z *= s;
+		update(fdf);
+	}
+	else if (keycode == KEY_UP)
+	{
+		fdf->tr.rot.x += rot;
+		update(fdf);
+	}
+	else if (keycode == KEY_DOWN)
+	{
+		fdf->tr.rot.x -= rot;
+		update(fdf);
+	}
+	else if (keycode == KEY_RIGHT)
+	{
+		fdf->tr.rot.z += rot;
+		update(fdf);
+	}
+	else if (keycode == KEY_LEFT)
+	{
+		fdf->tr.rot.z -= rot;
+		update(fdf);
+	}
 	printf("key: %d\n", keycode);
 	return (0);
 }
 
+void	update(t_fdf *fdf)
+{
+	draw_map(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->img_d.img, 0, 0);
+}
 
 int main(int ac, char **av)
 {

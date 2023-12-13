@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:56:09 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/13 19:55:42 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/13 21:09:32 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,18 @@ t_point	transform_point(t_transform *tr, t_point p)
 
 void	init_transform(t_fdf *fdf)
 {
-	fdf->tr.scale.x = 0.7;
-	fdf->tr.scale.y = 0.7;
-	fdf->tr.scale.z = 1;
+	const int	s = 1;
+
+	fdf->tr.scale.x = 0.7 * s;
+	fdf->tr.scale.y = 0.7 * s;
+	fdf->tr.scale.z = 0.5 * s;
 
 	fdf->tr.pos.x = WIN_WIDTH / 2;
 	fdf->tr.pos.y = WIN_HEIGHT / 2;
 	fdf->tr.pos.z = 0;
 
 
-	fdf->tr.rot.x = 30;
+	fdf->tr.rot.x = 45;
 	fdf->tr.rot.y = 0;
 	fdf->tr.rot.z = 45;
 }

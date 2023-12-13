@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:10:55 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/13 19:55:42 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/13 21:46:26 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,45 @@ void	swap_points(t_point *a, t_point *b)
 	*b = tmp;
 }
 
+int	lerp(int a, int b, int t)
+{
+	return (a + (t * (b - a))/ 100);
+}
+
+int	lerp_color(int a, int b, int t)
+{
+	t_vec3	c;
+
+	if (a == b)
+		return (a);
+	c.x = a >> 16 & 0xFF;
+	c.y = a >> 8 & 0xFF;
+	c.z = a & 0xFF;
+
+	c.x = lerp(c.x, b >> 16 & 0xFF, t);
+	c.y = lerp(c.y, b >> 8 & 0xFF, t);
+	c.z = lerp(c.z, b & 0xFF, t);
+	return (c.x << 16) | (c.y << 8) | (c.z);
+}
+
+int	get_percentage(t_point a, t_point b, t_point p)
+{
+	t_vec3	d;
+
+	d.x = b.x - a.x;
+	d.y = b.y - a.y;
+	if (d.x > d.y)
+		return ((p.x - a.x) * COLOR_Q / d.x);
+	return ((p.y - a.y) * COLOR_Q / d.y);
+}
 
 #include <stdio.h>
 void	draw_point(t_fdf *fdf, t_point a, t_point b, t_point p)
 {
-	int	color;
 	int	t;
 
-	t = ((p.x - a.x) * 100) / (b.x - a.x);
-	color = a.color + (t * (b.color - a.color)) / 100;
-
-	set_pixel(&fdf->img_d, p.x, p.y, color);
+	t = get_percentage(a, b, p);
+	set_pixel(&fdf->img_d, p.x, p.y, lerp_color(a.color, b.color, t));
 }
 
 void	draw_line_vertical(t_fdf *fdf, t_point a, t_point b)

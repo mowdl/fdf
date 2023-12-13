@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/13 01:48:33 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/13 21:52:57 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@
 #define WIN_HEIGHT 1000
 #define WIN_WIDTH 1500
 #define WIN_TITLE "fdf"
+
+# define KEY_W 13
+# define KEY_S 1
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+
+# define COLOR_Q 10
 
 typedef struct s_image_data {
 	void	*img;
@@ -98,6 +107,7 @@ void	set_pixel(t_image_data *data, int x, int y, int color);
 void	project_to_world(t_fdf *fdf);
 void	init_transform(t_fdf *fdf);
 t_point	transform_point(t_transform *tr, t_point p);
+void	update(t_fdf *fdf);
 
 
 void	load_map(t_fdf *fdf);
