@@ -42,7 +42,8 @@ int main(int ac, char **av)
 
 	fdf_init_mlx(fdf);
 
-	transform(fdf);
+	project_to_world(fdf);
+	init_transform(fdf);
 
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->img_d.img, 0, 0);

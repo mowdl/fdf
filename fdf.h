@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/11 21:08:16 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/13 01:48:33 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 #include "libft.h"
 #include "get_next_line.h"
 #include <stdarg.h>
+
+#include <math.h>
+#define PI 3.141592654
 
 #define WIN_HEIGHT 1000
 #define WIN_WIDTH 1500
@@ -49,10 +52,35 @@ typedef struct s_map_data {
 	t_map	map;
 }			t_map_data;
 
+typedef struct s_line {
+	int	negative;
+	int	flipped;
+}		t_line;
+
+typedef struct s_vec3 {
+	int	x;
+	int	y;
+	int	z;
+} t_vec3;
+
+typedef struct s_vec3_f {
+	float	x;
+	float	y;
+	float	z;
+}			t_vec3_f;
+
+typedef struct s_transform {	
+	t_vec3_f	scale;
+	t_vec3		pos;
+	t_vec3		rot;
+}		t_transform;
+
 typedef struct s_fdf {
+	t_transform		tr;
 	t_image_data	img_d;
 	t_map_data		map_data;
 	t_map			map;
+	t_line			line;
 	void			*mlx;
 	void			*mlx_win;
 }					t_fdf;
@@ -67,7 +95,9 @@ void	fdf_err(char *msg);
 
 void	draw_map(t_fdf *fdf);
 void	set_pixel(t_image_data *data, int x, int y, int color);
-void	transform(t_fdf *fdf);
+void	project_to_world(t_fdf *fdf);
+void	init_transform(t_fdf *fdf);
+t_point	transform_point(t_transform *tr, t_point p);
 
 
 void	load_map(t_fdf *fdf);
