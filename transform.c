@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:56:09 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/13 02:15:56 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:55:42 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	init_transform(t_fdf *fdf)
 {
 	fdf->tr.scale.x = 0.7;
 	fdf->tr.scale.y = 0.7;
-	fdf->tr.scale.z = 10;
+	fdf->tr.scale.z = 1;
 
 	fdf->tr.pos.x = WIN_WIDTH / 2;
 	fdf->tr.pos.y = WIN_HEIGHT / 2;

@@ -30,6 +30,19 @@ void	fdf_init_mlx(t_fdf *fdf)
 
 #include<stdio.h>
 
+int	key_hook(int keycode, t_fdf *fdf)
+{
+	(void)fdf;
+	if (keycode == 53)
+	{
+		fdf_clean();
+		exit(0);
+	}
+	printf("key: %d\n", keycode);
+	return (0);
+}
+
+
 int main(int ac, char **av)
 {
 	t_fdf *fdf;
@@ -47,6 +60,7 @@ int main(int ac, char **av)
 
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->img_d.img, 0, 0);
+	mlx_key_hook(fdf->mlx_win, key_hook, fdf);
 	mlx_loop(fdf->mlx);
 
 	fdf_clean();

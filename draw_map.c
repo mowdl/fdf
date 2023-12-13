@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:10:55 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/13 02:16:05 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:55:42 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ void	swap_points(t_point *a, t_point *b)
 #include <stdio.h>
 void	draw_point(t_fdf *fdf, t_point a, t_point b, t_point p)
 {
-	set_pixel(&fdf->img_d, p.x, p.y, (a.color + b.color) / 2);
+	int	color;
+	int	t;
+
+	t = ((p.x - a.x) * 100) / (b.x - a.x);
+	color = a.color + (t * (b.color - a.color)) / 100;
+
+	set_pixel(&fdf->img_d, p.x, p.y, color);
 }
 
 void	draw_line_vertical(t_fdf *fdf, t_point a, t_point b)
@@ -77,6 +83,7 @@ void	draw_line_Bresenham(t_fdf *fdf, t_point a, t_point b)
 	while (1)
 	{
 		draw_point(fdf, a, b, fixe_point(fdf, r));
+
 		if (r.x == b.x)
 			break;
 		if (p <= 0)
