@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:56:09 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/13 21:09:32 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:56:07 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	project_to_world(t_fdf *fdf)
 
 double to_rad(const int deg)
 {
-	return (((double)deg * PI) / 180);
+	return (((double)(deg % 360) * PI) / 180);
 }
 
 t_point	transform_point(t_transform *tr, t_point p)
@@ -75,11 +75,11 @@ t_point	transform_point(t_transform *tr, t_point p)
 
 void	init_transform(t_fdf *fdf)
 {
-	const int	s = 1;
+	const float	s = 1;
 
-	fdf->tr.scale.x = 0.7 * s;
-	fdf->tr.scale.y = 0.7 * s;
-	fdf->tr.scale.z = 0.5 * s;
+	fdf->tr.scale.x = 1 * s;
+	fdf->tr.scale.y = 1 * s;
+	fdf->tr.scale.z = 5 * s;
 
 	fdf->tr.pos.x = WIN_WIDTH / 2;
 	fdf->tr.pos.y = WIN_HEIGHT / 2;

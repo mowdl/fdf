@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/13 21:52:57 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:45:28 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 #define WIN_HEIGHT 1000
 #define WIN_WIDTH 1500
 #define WIN_TITLE "fdf"
+
+# define BG_COLOR 0x0000FF
 
 # define KEY_W 13
 # define KEY_S 1

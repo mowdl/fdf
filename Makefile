@@ -6,7 +6,7 @@
 #    By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/25 18:52:03 by mel-meka          #+#    #+#              #
-#    Updated: 2023/12/12 14:10:50 by mel-meka         ###   ########.fr        #
+#    Updated: 2023/12/14 15:35:23 by mel-meka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,10 +64,11 @@ FDF_SRCS = fdf.c			\
 		   transform.c
 
 FT_PRINTF_OBJS = $(FT_PRINTF_SRCS:.c=.o)
-GNL_OBJ = $(GNL_SRCS:.c=.o)
+GNL_OBJS = $(GNL_SRCS:.c=.o)
 LIBFT_OBJS = $(LIBFT_SRCS:.c=.o)
 FDF_OBJS = $(FDF_SRCS:.c=.o)
-OBJS = $(GNL_OBJ) $(LIBFT_OBJS) $(FDF_OBJS) $(FT_PRINTF_OBJS)
+SRCS = $(GNL_SRCS) $(LIBFT_SRCS) $(FDF_SRCS) $(FT_PRINTF_SRCS)
+OBJS = $(SRCS:.c=.o)
 
 INCLUDES = -I libft -I minilibX_macos -I get_next_line
 
@@ -87,8 +88,10 @@ $(NAME): $(OBJS) $(MLX)
 $(MLX): minilibX_macos/*.c minilibX_macos/*.m
 	(cd minilibX_macos && make)
 
+$(OBJS): 
+
 %.o: %.c
-	$(CC) $(CFLAGS) $< -c -o $@ $(INCLUDES) 
+	$(CC) $(CFLAGS) -O3 $< -c -o $@ $(INCLUDES) 
 
 
 clean:

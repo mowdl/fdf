@@ -77,7 +77,6 @@ int	key_hook(int keycode, t_fdf *fdf)
 		fdf->tr.rot.z -= rot;
 		update(fdf);
 	}
-	printf("key: %d\n", keycode);
 	return (0);
 }
 

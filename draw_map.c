@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:10:55 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/13 21:46:26 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/14 16:04:46 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	swap_points(t_point *a, t_point *b)
 	*b = tmp;
 }
 
-int	lerp(int a, int b, int t)
+int	lerp(int a, int b, float t)
 {
-	return (a + (t * (b - a))/ 100);
+	return (a + t * (float)(b - a));
 }
 
-int	lerp_color(int a, int b, int t)
+int	lerp_color(int a, int b, float t)
 {
 	t_vec3	c;
 
@@ -43,23 +43,34 @@ int	lerp_color(int a, int b, int t)
 	return (c.x << 16) | (c.y << 8) | (c.z);
 }
 
-int	get_percentage(t_point a, t_point b, t_point p)
+int	fdf_abs(int a)
+{
+	if (a > 0)
+		return (a);
+	return (-a);
+}
+
+float	get_percentage(t_point a, t_point b, t_point p)
 {
 	t_vec3	d;
 
 	d.x = b.x - a.x;
 	d.y = b.y - a.y;
-	if (d.x > d.y)
-		return ((p.x - a.x) * COLOR_Q / d.x);
-	return ((p.y - a.y) * COLOR_Q / d.y);
+	if (fdf_abs(d.x) > fdf_abs(d.y))
+		return ((float)(p.x - a.x) / (float)d.x);
+	return ((float)(p.y - a.y) / (float)d.y);
 }
 
 #include <stdio.h>
 void	draw_point(t_fdf *fdf, t_point a, t_point b, t_point p)
 {
-	int	t;
+	float	t;
 
+	if (p.x < 0 || p.y < 0 || p.y > WIN_HEIGHT || p.x > WIN_WIDTH)
+		return ;
 	t = get_percentage(a, b, p);
+	if (t > 1 || t < 0)
+		printf("t: %f\n", t);
 	set_pixel(&fdf->img_d, p.x, p.y, lerp_color(a.color, b.color, t));
 }
 
@@ -110,7 +121,7 @@ void	draw_line_Bresenham(t_fdf *fdf, t_point a, t_point b)
 	p = 2 * dy - dx;
 	while (1)
 	{
-		draw_point(fdf, a, b, fixe_point(fdf, r));
+		draw_point(fdf, fixe_point(fdf, a), fixe_point(fdf, b), fixe_point(fdf, r));
 
 		if (r.x == b.x)
 			break;
@@ -180,7 +191,7 @@ void	draw_line(t_fdf *fdf, t_point a, t_point b)
 
 t_point	get_point(t_fdf *fdf, int i, int j)
 {
-	return (transform_point(&fdf->tr, fdf->map.points[i + j * fdf->map.w]));
+	return transform_point(&fdf->tr, fdf->map.points[i + j * fdf->map.w]);
 }
 
 void	draw_background(t_fdf *fdf)
@@ -194,7 +205,7 @@ void	draw_background(t_fdf *fdf)
 		i = 0;
 		while (i < WIN_WIDTH)
 		{
-			set_pixel(&fdf->img_d, i, j, 0x0E1116);
+			set_pixel(&fdf->img_d, i, j, BG_COLOR);
 			i++;
 		}
 		j++;
@@ -233,5 +244,5 @@ void	set_pixel(t_image_data *data, int x, int y, int color)
 	if (x >= WIN_WIDTH || y >= WIN_HEIGHT)
 		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(int*)dst = color;
 }
