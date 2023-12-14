@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 12:53:33 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/11 15:54:33 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:59:39 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	del_with_free(void *content)
 	free(content);
 }
 
-void	del_arr(void  *arr)
+void	del_arr(void *arr)
 {
-	char **tmp;
+	char	**tmp;
 
 	tmp = (char **)arr;
 	while (*tmp)
@@ -33,7 +33,7 @@ void	del_arr(void  *arr)
 
 void	fdf_clean(void)
 {
-	t_fdf *fdf;
+	t_fdf	*fdf;
 
 	fdf = get_fdf();
 	if (fdf->map_data.lines != 0)

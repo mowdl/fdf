@@ -6,24 +6,26 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/14 15:45:28 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/14 21:35:14 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include "mlx.h"
-#include "libft.h"
-#include "get_next_line.h"
-#include <stdarg.h>
+#ifndef FDF_H
+# define FDF_H
+# include <math.h>
+# include "mlx.h"
+# include "libft.h"
+# include "get_next_line.h"
+# include <stdarg.h>
 
-#include <math.h>
-#define PI 3.141592654
+# include <math.h>
+# define PI 3.141592654
 
-#define WIN_HEIGHT 1000
-#define WIN_WIDTH 1500
-#define WIN_TITLE "fdf"
+# define WIN_HEIGHT 1080
+# define WIN_WIDTH 1920
+# define WIN_TITLE "fdf"
 
-# define BG_COLOR 0x0000FF
+# define BG_COLOR 0x111111
 
 # define KEY_W 13
 # define KEY_S 1
@@ -72,7 +74,7 @@ typedef struct s_vec3 {
 	int	x;
 	int	y;
 	int	z;
-} t_vec3;
+}		t_vec3;
 
 typedef struct s_vec3_f {
 	float	x;
@@ -84,7 +86,7 @@ typedef struct s_transform {
 	t_vec3_f	scale;
 	t_vec3		pos;
 	t_vec3		rot;
-}		t_transform;
+}				t_transform;
 
 typedef struct s_fdf {
 	t_transform		tr;
@@ -96,7 +98,7 @@ typedef struct s_fdf {
 	void			*mlx_win;
 }					t_fdf;
 
-int	ft_printf(const char *str, ...);
+int		ft_printf(const char *str, ...);
 
 t_fdf	*get_fdf(void);
 void	fdf_clean(void);
@@ -104,12 +106,22 @@ void	del_with_free(void *content);
 
 void	fdf_err(char *msg);
 
-void	draw_map(t_fdf *fdf);
-void	set_pixel(t_image_data *data, int x, int y, int color);
 void	project_to_world(t_fdf *fdf);
 void	init_transform(t_fdf *fdf);
 t_point	transform_point(t_transform *tr, t_point p);
 void	update(t_fdf *fdf);
+void	scale(t_fdf *fdf, const float s);
+void	parse_points_arr(t_fdf *fdf);
 
+void	draw_map(t_fdf *fdf);
+void	draw_point(t_fdf *fdf, t_point a, t_point b, t_point p);
+void	draw_line(t_fdf *fdf, t_point a, t_point b);
+void	set_pixel(t_image_data *data, int x, int y, int color);
+
+void	swap_points(t_point *a, t_point *b);
+void	flip_point(t_point *p);
+t_point	fixe_point(t_fdf *fdf, t_point r);
+t_point	get_point(t_fdf *fdf, int i, int j);
 
 void	load_map(t_fdf *fdf);
+#endif
