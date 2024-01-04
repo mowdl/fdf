@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2024/01/04 04:02:20 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/01/04 04:48:28 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		ft_printf(const char *str, ...);
 t_fdf	*get_fdf(void);
 void	fdf_clean(void);
 void	del_with_free(void *content);
-int		on_close();
+int		on_close(void);
 
 void	fdf_err(char *msg);
 
