@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:49:02 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/14 20:51:20 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/01/04 04:02:40 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,6 @@ void	fdf_init_mlx(t_fdf *fdf)
 			&fdf->img_d.endian);
 }
 
-int	key_hook(int keycode, t_fdf *fdf)
-{
-	int		rot;
-
-	rot = 1;
-	if (keycode == 53)
-	{
-		fdf_clean();
-		exit(0);
-	}
-	else if (keycode == KEY_W)
-		scale(fdf, 1.2);
-	else if (keycode == KEY_S)
-		scale(fdf, 0.8);
-	else if (keycode == KEY_UP)
-		fdf->tr.rot.x += rot;
-	else if (keycode == KEY_DOWN)
-		fdf->tr.rot.x -= rot;
-	else if (keycode == KEY_RIGHT)
-		fdf->tr.rot.z += rot;
-	else if (keycode == KEY_LEFT)
-		fdf->tr.rot.z -= rot;
-	update(fdf);
-	return (0);
-}
-
 void	update(t_fdf *fdf)
 {
 	draw_map(fdf);
@@ -84,9 +58,11 @@ int	main(int ac, char **av)
 	fdf_init_mlx(fdf);
 	project_to_world(fdf);
 	init_transform(fdf);
+	normalize_z(fdf);
 	draw_map(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->img_d.img, 0, 0);
 	mlx_key_hook(fdf->mlx_win, key_hook, fdf);
+	mlx_hook(fdf->mlx_win, 17, 0, on_close, &fdf);
 	mlx_loop(fdf->mlx);
 	fdf_clean();
 }

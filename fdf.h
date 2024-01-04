@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/14 21:35:14 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/01/04 04:02:20 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@
 
 # define KEY_W 13
 # define KEY_S 1
+# define KEY_A 0
+# define KEY_D 2
 # define KEY_UP 126
 # define KEY_DOWN 125
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
-
-# define COLOR_Q 10
+# define KEY_U 32
+# define KEY_I 34
+# define KEY_ESC 53
 
 typedef struct s_image_data {
 	void	*img;
@@ -103,6 +106,7 @@ int		ft_printf(const char *str, ...);
 t_fdf	*get_fdf(void);
 void	fdf_clean(void);
 void	del_with_free(void *content);
+int		on_close();
 
 void	fdf_err(char *msg);
 
@@ -124,4 +128,8 @@ t_point	fixe_point(t_fdf *fdf, t_point r);
 t_point	get_point(t_fdf *fdf, int i, int j);
 
 void	load_map(t_fdf *fdf);
+
+void	normalize_z(t_fdf *fdf);
+
+int		key_hook(int keycode, t_fdf *fdf);
 #endif

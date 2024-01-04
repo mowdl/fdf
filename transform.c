@@ -6,11 +6,31 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:56:09 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/14 20:56:56 by mel-meka         ###   ########.fr       */
+/*   Updated: 2023/12/22 22:15:22 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	normalize_z(t_fdf *fdf)
+{
+	t_map *const	map = &fdf->map;
+	const int		size = map->w * map->h;
+	int				i;
+	int				max;
+	float			scale;
+
+	max = 0;
+	i = 0;
+	while (i < size)
+	{
+		if (map->points[i].z > max)
+			max = map->points[i].z;
+		i++;
+	}
+	scale = (float)WIN_HEIGHT / (float)(max * 2);
+	fdf->tr.scale.z *= scale;
+}
 
 void	project_to_world(t_fdf *fdf)
 {
@@ -34,13 +54,6 @@ void	project_to_world(t_fdf *fdf)
 		p->y = (p->y - fdf->map.h / 2) * factor;
 		i++;
 	}
-}
-
-void	scale(t_fdf *fdf, const float s)
-{
-	fdf->tr.scale.x *= s;
-	fdf->tr.scale.y *= s;
-	fdf->tr.scale.z *= s;
 }
 
 double	to_rad(const int deg)
@@ -71,11 +84,11 @@ t_point	transform_point(t_transform *tr, t_point p)
 
 void	init_transform(t_fdf *fdf)
 {
-	const float	s = 1;
+	const float	s = 0.6;
 
 	fdf->tr.scale.x = 1 * s;
 	fdf->tr.scale.y = 1 * s;
-	fdf->tr.scale.z = 5 * s;
+	fdf->tr.scale.z = 0.8 * s;
 	fdf->tr.pos.x = WIN_WIDTH / 2;
 	fdf->tr.pos.y = WIN_HEIGHT / 2;
 	fdf->tr.pos.z = 0;

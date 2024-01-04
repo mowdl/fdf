@@ -6,7 +6,7 @@
 #    By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/25 18:52:03 by mel-meka          #+#    #+#              #
-#    Updated: 2023/12/14 21:20:26 by mel-meka         ###   ########.fr        #
+#    Updated: 2023/12/22 21:57:50 by mel-meka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ FDF_SRCS = fdf.c			\
 		   draw_line.c		\
 		   draw_utils.c		\
 		   draw_point.c		\
-		   transform.c
+		   transform.c		\
+		   input.c
 
 FT_PRINTF_OBJS = $(FT_PRINTF_SRCS:.c=.o)
 GNL_OBJS = $(GNL_SRCS:.c=.o)
