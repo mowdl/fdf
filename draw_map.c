@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:10:55 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/14 21:22:49 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:00:07 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ void	draw_map(t_fdf *fdf)
 
 void	set_pixel(t_image_data *data, int x, int y, int color)
 {
-	char	*dst;
+	char			*dst;
+	unsigned int	c;
 
 	if (x < 0 || y < 0)
 		return ;
 	if (x >= WIN_WIDTH || y >= WIN_HEIGHT)
 		return ;
+	c = mlx_get_color_value(get_fdf()->mlx, color);
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(int *)dst = color;
+	ft_memcpy(dst, &c, data->bits_per_pixel / 8);
 }
