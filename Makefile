@@ -6,7 +6,7 @@
 #    By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/25 18:52:03 by mel-meka          #+#    #+#              #
-#    Updated: 2023/12/22 21:57:50 by mel-meka         ###   ########.fr        #
+#    Updated: 2024/02/21 02:21:50 by mel-meka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,13 +76,12 @@ SRCS = $(GNL_SRCS) $(LIBFT_SRCS) $(FT_PRINTF_SRCS)
 OBJS = $(SRCS:.c=.o)
 FDF_OBJS = $(FDF_SRCS:.c=.o)
 
-INCLUDES = -I libft -I minilibX_macos -I get_next_line
+INCLUDES = -I libft -I minilibx-linux -I get_next_line
 
 
 NAME = fdf
 
-MLX = minilibX_macos/libmlx.a
-FRAMEWORKS = -framework OpenGL -framework AppKit
+FRAMEWORKS = -lmlx -lXext -lX11 -lm -lbsd -I minilibx-linux -Lminilibx-linux
 
 CFLAGS = -Wall -Wextra -Werror -O2
 
@@ -91,8 +90,6 @@ all: $(NAME)
 $(NAME): $(OBJS) $(MLX) $(FDF_OBJS)
 	$(CC) $^ -o $@ $(INCLUDES) $(FRAMEWORKS)
 
-$(MLX): minilibX_macos/*.c minilibX_macos/*.m
-	(cd minilibX_macos && make)
 
 $(FDF_OBJS): $(FDF_SRCS)
 	$(CC) $(CFLAGS) $(FDF_SRCS) -c $(INCLUDES)
@@ -101,7 +98,6 @@ $(FDF_OBJS): $(FDF_SRCS)
 
 clean:
 	$(RM) $(OBJS) $(FDF_OBJS)
-	(cd minilibX_macos && make clean)
 
 fclean: clean
 	$(RM) $(NAME)

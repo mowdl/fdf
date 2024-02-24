@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2024/01/04 04:48:28 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/02/21 02:31:45 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 # include <math.h>
 # include "mlx.h"
+# include "mlx_int.h"
 # include "libft.h"
 # include "get_next_line.h"
 # include <stdarg.h>
@@ -27,17 +28,17 @@
 
 # define BG_COLOR 0x111111
 
-# define KEY_W 13
-# define KEY_S 1
-# define KEY_A 0
-# define KEY_D 2
-# define KEY_UP 126
-# define KEY_DOWN 125
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
-# define KEY_U 32
-# define KEY_I 34
-# define KEY_ESC 53
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_A 97
+# define KEY_D 100
+# define KEY_UP 65362
+# define KEY_DOWN 65364
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_U 117
+# define KEY_I 105
+# define KEY_ESC 65307
 
 typedef struct s_image_data {
 	void	*img;
