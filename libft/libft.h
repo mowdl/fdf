@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:12:37 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/11/11 18:34:28 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/02/27 05:34:38 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 
 # include <stddef.h>
+# include <stdint.h>
 
 size_t	ft_strlen(const char *s);
 int		ft_isalpha(int c);
