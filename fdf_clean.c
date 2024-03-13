@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 12:53:33 by mel-meka          #+#    #+#             */
-/*   Updated: 2024/01/04 04:14:52 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/03/11 20:15:51 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,21 @@ void	fdf_clean(void)
 	t_fdf	*fdf;
 
 	fdf = get_fdf();
-	if (fdf->map_data.lines != 0)
+	if (fdf->map_data.lines)
 		ft_lstclear(&fdf->map_data.lines, del_with_free);
-	if (fdf->map_data.splited_lines != 0)
-		ft_lstclear(&fdf->map_data.lines, del_arr);
+	if (fdf->map_data.splited_lines)
+		ft_lstclear(&fdf->map_data.splited_lines, del_arr);
 	if (fdf->img_d.img)
 		mlx_destroy_image(fdf->mlx, fdf->img_d.img);
+	if (fdf->mlx)
+	{
+		if (fdf->mlx_win)
+			mlx_destroy_window(fdf->mlx, fdf->mlx_win);
+		mlx_destroy_display(fdf->mlx);
+		free(fdf->mlx);
+	}
+	if (fdf->map.points)
+		free(fdf->map.points);
 }
 
 int	on_close(void)

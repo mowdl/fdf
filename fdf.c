@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:49:02 by mel-meka          #+#    #+#             */
-/*   Updated: 2024/01/04 04:02:40 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/03/12 19:59:11 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,19 @@ void	fdf_init_mlx(t_fdf *fdf)
 			&fdf->img_d.endian);
 }
 
-void	update(t_fdf *fdf)
+void	init_transform(t_fdf *fdf)
 {
-	draw_map(fdf);
-	mlx_put_image_to_window(fdf->mlx, fdf->mlx_win, fdf->img_d.img, 0, 0);
+	const float	s = 0.6;
+
+	fdf->tr.scale.x = 1 * s;
+	fdf->tr.scale.y = 1 * s;
+	fdf->tr.scale.z = 0.8 * s;
+	fdf->tr.pos.x = WIN_WIDTH / 2;
+	fdf->tr.pos.y = WIN_HEIGHT / 2;
+	fdf->tr.pos.z = 0;
+	fdf->tr.rot.x = 0;
+	fdf->tr.rot.y = 0;
+	fdf->tr.rot.z = 0;
 }
 
 int	main(int ac, char **av)

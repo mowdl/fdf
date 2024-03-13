@@ -6,11 +6,25 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:01:39 by mel-meka          #+#    #+#             */
-/*   Updated: 2023/12/14 21:02:39 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/03/13 00:45:10 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static const int	g_colors[] = {
+	0xFF0000, // Red
+	0x00FF00, // Green
+	0x0000FF, // Blue
+	0xFFFF00, // Yellow
+	0xFF00FF, // Magenta
+	0x00FFFF, // Cyan
+	0x800080, // Purple
+	0xFFA500, // Orange
+	0x8A2BE2, // BlueViolet
+	0xFFD700, // Gold
+	0xF080F0, // Gray
+};
 
 int	int_from_char_hex(char c)
 {
@@ -34,15 +48,14 @@ t_point	parse_point(char *str, int x, int y)
 	point.z = ft_atoi(str);
 	comma = ft_strchr(str, ',');
 	if (comma == NULL)
-		point.color = 0x00ffffff;
+		point.color = g_colors[point.z % sizeof(g_colors)];
 	else if (comma[1] != '0' || comma[2] != 'x')
 		fdf_err("Error in input\n");
 	else
 	{
 		point.color = 0;
 		comma = comma + 3;
-		comma[6] = '\0';
-		while (*comma)
+		while (*comma && *comma != '\n')
 		{
 			point.color = point.color * 16 + int_from_char_hex(*comma);
 			comma++;
