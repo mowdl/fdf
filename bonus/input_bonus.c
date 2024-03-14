@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 21:54:59 by mel-meka          #+#    #+#             */
-/*   Updated: 2024/03/14 01:07:19 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/03/14 02:25:05 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	scale(t_fdf *fdf, const float s)
 {
+	if (fdf->iso)
+		return ;
 	fdf->tr.scale.x *= s;
 	fdf->tr.scale.y *= s;
 	fdf->tr.scale.z *= s;
@@ -23,6 +25,8 @@ void	keycode_translation(int keycode, t_fdf *fdf)
 {
 	const int	pos = 10;
 
+	if (fdf->iso)
+		return ;
 	if (keycode == KEY_S)
 		fdf->tr.pos.y += pos;
 	else if (keycode == KEY_W)
