@@ -6,7 +6,7 @@
 #    By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/25 18:52:03 by mel-meka          #+#    #+#              #
-#    Updated: 2024/02/21 02:21:50 by mel-meka         ###   ########.fr        #
+#    Updated: 2024/03/14 01:23:43 by mel-meka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,19 @@ FDF_SRCS = fdf.c			\
 		   transform.c		\
 		   input.c
 
+BONUS_SRCS=bonus/fdf_bonus.c			\
+		   bonus/fdf_err_bonus.c		\
+		   bonus/fdf_clean_bonus.c		\
+		   bonus/load_map_bonus.c		\
+		   bonus/load_map_utils_bonus.c	\
+		   bonus/draw_map_bonus.c		\
+		   bonus/draw_line_bonus.c		\
+		   bonus/draw_utils_bonus.c		\
+		   bonus/draw_point_bonus.c		\
+		   bonus/transform_bonus.c		\
+		   bonus/input_bonus.c			\
+		   bonus/animation_bonus.c
+
 FT_PRINTF_OBJS = $(FT_PRINTF_SRCS:.c=.o)
 GNL_OBJS = $(GNL_SRCS:.c=.o)
 LIBFT_OBJS = $(LIBFT_SRCS:.c=.o)
@@ -75,31 +88,39 @@ FDF_OBJS = $(FDF_SRCS:.c=.o)
 SRCS = $(GNL_SRCS) $(LIBFT_SRCS) $(FT_PRINTF_SRCS)
 OBJS = $(SRCS:.c=.o)
 FDF_OBJS = $(FDF_SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 INCLUDES = -I libft -I minilibx-linux -I get_next_line
 
 
 NAME = fdf
 
-FRAMEWORKS = -lmlx -lXext -lX11 -lm -lbsd -I minilibx-linux -Lminilibx-linux
+BONUS = fdf_bonus
 
-CFLAGS = -Wall -Wextra -Werror -O2
+LIBS = -lmlx -lXext -lX11 -lm
+
+CFLAGS = -Wall -Wextra -Werror -O3 $(INCLUDES)
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(MLX) $(FDF_OBJS)
-	$(CC) $^ -o $@ $(INCLUDES) $(FRAMEWORKS)
+	$(CC) $^ -o $@ $(INCLUDES) $(LIBS)
 
 
 $(FDF_OBJS): $(FDF_SRCS)
 	$(CC) $(CFLAGS) $(FDF_SRCS) -c $(INCLUDES)
 
+bonus: $(BONUS)
+
+
+$(BONUS): $(OBJS) $(MLX) $(BONUS_OBJS)
+	$(CC) $^ -o $@ $(INCLUDES) $(LIBS)
 
 
 clean:
-	$(RM) $(OBJS) $(FDF_OBJS)
+	$(RM) $(OBJS) $(FDF_OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(BONUS)
 
 re: fclean all
