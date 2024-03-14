@@ -45,7 +45,8 @@
 
 # define ANIM_SPEED 0.3
 
-typedef struct s_image_data {
+typedef struct s_image_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -53,20 +54,23 @@ typedef struct s_image_data {
 	int		endian;
 }			t_image_data;
 
-typedef struct s_point {
+typedef struct s_point
+{
 	int	x;
 	int	y;
 	int	z;
 	int	color;
 }		t_point;
 
-typedef struct s_map {
+typedef struct s_map
+{
 	t_point	*points;
 	int		h;
 	int		w;
 }			t_map;
 
-typedef struct s_map_data {
+typedef struct s_map_data
+{
 	char	*file_path;
 	int		fd;
 	t_list	*lines;
@@ -74,36 +78,42 @@ typedef struct s_map_data {
 	t_map	map;
 }			t_map_data;
 
-typedef struct s_line {
+typedef struct s_line
+{
 	int	negative;
 	int	flipped;
 }		t_line;
 
-typedef struct s_vec3 {
+typedef struct s_vec3
+{
 	int	x;
 	int	y;
 	int	z;
 }		t_vec3;
 
-typedef struct s_vec3_f {
+typedef struct s_vec3_f
+{
 	float	x;
 	float	y;
 	float	z;
 }			t_vec3_f;
 
-typedef struct s_transform {	
+typedef struct s_transform
+{
 	t_vec3_f	scale;
 	t_vec3		pos;
 	t_vec3		rot;
 }				t_transform;
 
-typedef struct s_anim {
+typedef struct s_anim
+{
 	int		state;
 	double	progress;
 	clock_t	last_time;
 }			t_anim;
 
-typedef struct s_fdf {
+typedef struct s_fdf
+{
 	t_transform		tr;
 	t_image_data	img_d;
 	t_map_data		map_data;
