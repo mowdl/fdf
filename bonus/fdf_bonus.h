@@ -14,7 +14,6 @@
 # define FDF_BONUS_H
 # include <math.h>
 # include "mlx.h"
-# include "mlx_int.h"
 # include "libft.h"
 # include "get_next_line.h"
 # include <stdarg.h>

@@ -77,8 +77,8 @@ t_point	iso_transform(t_point p)
 	pp.z = p.z * cos(to_rad(-45)) - p.x * sin(to_rad(-45));
 	p = pp;
 	pp.x = p.x;
-	pp.y = p.y * cos(to_rad(-35.264)) - p.z * sin(to_rad(-35.264));
-	pp.z = p.y * sin(to_rad(-35.264)) + p.z * cos(to_rad(-35.264));
+	pp.y = p.y * cos(to_rad(-35)) - p.z * sin(to_rad(-35));
+	pp.z = p.y * sin(to_rad(-35)) + p.z * cos(to_rad(-35));
 	return (pp);
 }
 
