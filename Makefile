@@ -6,7 +6,7 @@
 #    By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/25 18:52:03 by mel-meka          #+#    #+#              #
-#    Updated: 2024/03/14 01:23:43 by mel-meka         ###   ########.fr        #
+#    Updated: 2024/03/14 01:55:01 by mel-meka         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ BONUS_SRCS=bonus/fdf_bonus.c			\
 		   bonus/draw_utils_bonus.c		\
 		   bonus/draw_point_bonus.c		\
 		   bonus/transform_bonus.c		\
+		   bonus/iso_transform_bonus.c	\
 		   bonus/input_bonus.c			\
 		   bonus/animation_bonus.c
 

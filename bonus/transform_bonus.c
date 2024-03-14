@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:56:09 by mel-meka          #+#    #+#             */
-/*   Updated: 2024/03/14 01:06:58 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/03/14 01:55:17 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,37 +84,12 @@ t_point	transform_point(t_transform *tr, t_point p)
 	return (pp);
 }
 
-t_point	iso_transform(t_transform *tr, t_point p)
-{
-	t_point	pp;
-
-	p.x *= tr->scale.x;
-	p.y *= tr->scale.y;
-	p.z *= tr->scale.z;
-	pp = p;
-	pp.x = p.x;
-	pp.y = p.y * cos(to_rad(90)) - p.z * sin(to_rad(90));
-	pp.z = p.y * sin(to_rad(90)) + p.z * cos(to_rad(90));
-	p = pp;
-	pp.x = p.z * sin(to_rad(-45)) + p.x * cos(to_rad(-45));
-	pp.y = p.y;
-	pp.z = p.z * cos(to_rad(-45)) - p.x * sin(to_rad(-45));
-	p = pp;
-	pp.x = p.x;
-	pp.y = p.y * cos(to_rad(-35.264)) - p.z * sin(to_rad(-35.264));
-	pp.z = p.y * sin(to_rad(-35.264)) + p.z * cos(to_rad(-35.264));
-	pp.x += tr->pos.x;
-	pp.y += tr->pos.y;
-	pp.z += tr->pos.z;
-	return (pp);
-}
-
 void	init_transform(t_fdf *fdf)
 {
 	const float	s = 0.6;
 
-	fdf->anim.progress = 1;
-	fdf->anim.state = 0;
+	fdf->anim.progress = 0;
+	fdf->anim.state = 1;
 	fdf->tr.scale.x = 1 * s;
 	fdf->tr.scale.y = 1 * s;
 	fdf->tr.scale.z = 0.8 * s;

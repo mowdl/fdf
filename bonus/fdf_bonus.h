@@ -6,12 +6,12 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:14:56 by mel-meka          #+#    #+#             */
-/*   Updated: 2024/03/14 00:44:27 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/03/14 01:53:14 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 # include <math.h>
 # include "mlx.h"
 # include "mlx_int.h"

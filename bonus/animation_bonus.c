@@ -6,7 +6,7 @@
 /*   By: mel-meka <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 03:44:28 by mel-meka          #+#    #+#             */
-/*   Updated: 2024/03/14 01:08:23 by mel-meka         ###   ########.fr       */
+/*   Updated: 2024/03/14 01:52:22 by mel-meka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ double	smooth(double x)
 	return ((sin(PI * x - PI / 2) + 1) / 2);
 }
 
-void	anim_scale()
+void	anim_scale(void)
 {
 	t_anim	*anim;
 	clock_t	now;
